@@ -28,13 +28,13 @@ const FieldValidation = (field, evt, pattern) => {
     field.classList.remove("border-green-600");
     field.classList.add("border-red-600");
     errorMsg.classList.remove("hidden");
-    errorField[field]=true;
+    errorField[field.name]=true;
     // btnSubmit.disabled = true;
   } else {
     field.classList.remove("border-red-600");
     field.classList.add("border-green-600");
     errorMsg.classList.add("hidden");
-    errorField[field]=false;
+    errorField[field.name]=false;
     // btnSubmit.disabled = false;
   }
 };
@@ -45,8 +45,9 @@ apellido.addEventListener("input", (evt) => FieldValidation(apellido, evt, Nombr
 matricula.addEventListener("input", (evt) => FieldValidation(matricula, evt, MatriculaExp));
 
 class Estudiante {
-  constructor(nombre, matricula) {
+  constructor(nombre, apellido,matricula) {
     this.nombre = nombre;
+    this.apellido = apellido;
     this.matricula = matricula;
   }
 };
@@ -58,9 +59,29 @@ const agregarEstudiante = (Listado = [], nuevoEstudiante = {}) => {
 
 Formulario.addEventListener("submit", (e) => {
   e.preventDefault();
-  if (matricula.value.trim() === "" || nombre.value.trim() === "") return;
-  const nuevoEstudiante = new Estudiante(nombre.value, matricula.value);
+  
+  if (
+      matricula.value.trim() === "" || 
+      nombre.value.trim() === "" ||
+      apellido.value.trim() === ""
+    ) {
+      alert("Favor llenar todos los campos.")
+      return
+    }
+    
+  if (
+      errorField.nombre ||
+      errorField.apellido ||
+      errorField.matricula
+    ) {
+      alert("Favor revisar los campos")
+      return 
+    }
+  
+  const nuevoEstudiante = new Estudiante(nombre.value, apellido.value, matricula.value);
   agregarEstudiante(listadoEstudiantes, nuevoEstudiante);
+
   nombre.value = "";
+  apellido.value = "";
   matricula.value = "";
 });
