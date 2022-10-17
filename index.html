@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="flex justify-center item-center">
+    <form class="w-60 bg-slate-200 p-5 rounded-md" id="formulario">
+      <div class="flex flex-col">
+        <label for="nombre" class="font-bold">Nombre</label>
+        <input
+          type="text"
+          name="nombre"
+          id="nombre"
+          placeholder="Ej. Leandro"
+          class="border-2"
+          autofocus
+        />
+        <label id="errorNombre" class="hidden font-bold text-red-900"
+          >No se aceptan caracteres especiales</label
+        >
+      </div>
+      <div class="flex flex-col">
+        <label for="apellido" class="font-bold">Apellido</label>
+        <input
+          type="text"
+          name="apellido"
+          id="apellido"
+          placeholder="Ej. Sanchez"
+          class="border-2"
+          autofocus
+        />
+        <label id="errorApellido" class="hidden font-bold text-red-900"
+          >No se aceptan caracteres especiales</label
+        >
+      </div>
+      <div class="mt-4 flex flex-col">
+        <label for="matricula" class="font-bold">Matricula</label>
+        <input
+          type="text"
+          name="matricula"
+          id="matricula"
+          placeholder="Ej. 9999-9999"
+          class="border-2"
+        />
+        <label id="errorMatricula" class="hidden font-bold text-red-900"
+          >La matricula no cumple con el formato especificado.</label
+        >
+      </div>
+      <div class="input-group flex justify-around mt-6">
+        <button
+          class="px-2 py-3 border rounded-md text-white bg-green-600 disabled:bg-gray-500 hover:cursor-not-allowed"
+          type="submit"
+          id="btnSubmit"
+        >
+          Enviar
+        </button>
+        <button
+          class="px-2 py-3 border rounded-md text-white bg-red-600"
+          type="reset"
+        >
+          Limpiar
+        </button>
+      </div>
+    </form>
+    <script src="./index.js"></script>
+  </body>
+</html>
